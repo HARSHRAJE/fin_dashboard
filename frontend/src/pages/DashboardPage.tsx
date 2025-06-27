@@ -1,14 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import { Typography, Container, Box } from '@mui/material';
+import React from 'react';
+import { Typography, Container, Box, Button } from '@mui/material';
 import TransactionTable from '../components/TransactionTable';
 import RevenueChart from '../components/RevenueChart';
 
 const DashboardPage = () => {
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    window.location.href = '/';
+  };
+
   return (
     <Container>
-      <Typography variant="h4" mt={4}>Dashboard</Typography>
-      <RevenueChart />
-      { <TransactionTable /> }
+      <Box display="flex" justifyContent="space-between" alignItems="center" mt={4}>
+        <Typography variant="h4">Dashboard</Typography>
+        <Button variant="contained" color="secondary" onClick={handleLogout}>
+          Logout
+        </Button>
+      </Box>
+      <Box mt={4}>
+        <RevenueChart />
+      </Box>
+      <Box mt={4}>
+        <TransactionTable />
+      </Box>
     </Container>
   );
 };
